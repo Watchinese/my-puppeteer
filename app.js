@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const PORT = process.env.PORT || 7860; // Hugging Face Spaces 默認使用 7860 端口
+const PORT = process.env.PORT || 10000 ; // Render 默認使用 10000 端口
 
 app.use(express.json()); // 啟用 JSON body 解析
 
