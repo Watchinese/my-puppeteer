@@ -1,0 +1,16 @@
+{
+  "name": "yutakachen-my-puppeteer-hf-space",
+  "version": "1.0.0",
+  "description": "Puppeteer screenshot service for Hugging Face Space",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "puppeteer": "^22.12.0" 
+  },
+  "keywords": [],
+  "author": "Yutaka",
+  "license": "MIT"
+}
