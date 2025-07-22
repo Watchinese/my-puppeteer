@@ -11,10 +11,7 @@ COPY package*.json ./
 
 # 安裝 Node.js 依賴
 RUN npm install
-# Set the cache directory and a specific executable path *for the installer*
-ENV PUPPETEER_CACHE_DIR=/app/.cache/puppeteer
-ENV PUPPETEER_EXECUTABLE_PATH=/app/.cache/puppeteer/chrome/linux-127.0.6533.88/chrome-linux64/chrome # Adjust version
-RUN npx puppeteer browsers install chrome
+
 # 複製應用程序代碼
 COPY . .
 
