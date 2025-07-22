@@ -16,7 +16,7 @@ RUN npm install
 COPY . .
 
 # 暴露應用程序端口 (Hugging Face Spaces 主要看 README.md 的 app_port)
-EXPOSE 7860
+# EXPOSE 7860
 
 # 啟動應用程序
 CMD ["npm", "start"]
