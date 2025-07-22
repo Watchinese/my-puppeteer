@@ -12,6 +12,11 @@ COPY package*.json ./
 # 安裝 Node.js 依賴
 RUN npm install
 
+# --- ADD THIS LINE ---
+# Explicitly install the browser that Puppeteer expects
+# This uses the version defined in your package.json dependencies
+RUN npx puppeteer browsers install chrome
+
 # 複製應用程序代碼
 COPY . .
 
