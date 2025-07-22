@@ -52,6 +52,15 @@ COPY package*.json ./
 # 安裝 Node.js 依賴
 RUN npm install
 
+# --- IMPORTANT: Set Puppeteer's cache and executable path explicitly ---
+# Puppeteer will download Chrome to this specific path during the build.
+# The version number in the path (127.0.6533.88) comes from your previous error messages.
+ENV PUPPETEER_CACHE_DIR=/app/.cache/puppeteer
+ENV PUPPETEER_EXECUTABLE_PATH=/app/.cache/puppeteer/chrome/linux-127.0.6533.88/chrome-linux64/chrome
+
+# Run Puppeteer's browser installation command
+RUN npx puppeteer browsers install chrome
+
 # 複製應用程序代碼
 COPY . .
 
