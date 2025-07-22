@@ -1,28 +1,68 @@
-# 使用包含 Chromium 的 Node.js 基礎映像檔
-# 來自 Google 的 Headless Chrome 官方映像檔，但已包含 Node.js
-# 確保這個映像檔版本支持你的 puppeteer 版本
-FROM ghcr.io/puppeteer/puppeteer:22.12.0
+# Use a standard Node.js base image (e.g., LTS version)
+# You might need to add system dependencies for Chrome manually, which the puppeteer image handles.
+# A good compromise is a Node image with essential tools like 'curl' or 'wget' for browser download.
+FROM node:20-slim
 
-# 設定工作目錄
+# Install necessary system dependencies for Chrome Headless
+# These are common dependencies for running Chromium on Debian-based systems.
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    unzip \
+    fonts-liberation \
+    libappindicator3-1 \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libcairo2 \
+    libcups2 \
+    libdbus-1-3 \
+    libdrm2 \
+    libexpat1 \
+    libfontconfig1 \
+    libgbm1 \
+    libgcc1 \
+    libglib2.0-0 \
+    libgtk-3-0 \
+    libnspr4 \
+    libnss3 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libstdc++6 \
+    libx11-6 \
+    libx11-xcb1 \
+    libxcb1 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxext6 \
+    libxfixes3 \
+    libxi6 \
+    libxrandr2 \
+    libxrender1 \
+    libxss1 \
+    libxtst6 \
+    ca-certificates \
+    # Clean up apt caches to reduce image size
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
 WORKDIR /app
 
-# 複製 package.json 和 package-lock.json (如果存在)
+# Copy package.json and install dependencies
 COPY package*.json ./
-
-# 安裝 Node.js 依賴
 RUN npm install
 
-# --- ADD THIS LINE ---
-# Explicitly install the browser that Puppeteer expects
-# This uses the version defined in your package.json dependencies
-ENV PUPPETEER_CACHE_DIR=/opt/render/.cache/puppeteer
+# Set Puppeteer cache directory and install Chrome
+# This ensures Chrome is downloaded and placed where Puppeteer expects it.
+ENV PUPPETEER_CACHE_DIR=/app/.cache/puppeteer # Use a path within your WORKDIR
 RUN npx puppeteer browsers install chrome
 
-# 複製應用程序代碼
+# Copy application code
 COPY . .
 
-# 暴露應用程序端口 (Hugging Face Spaces 主要看 README.md 的 app_port)
-# EXPOSE 7860
+# Expose port
+EXPOSE 10000
 
-# 啟動應用程序
+# Start the application
 CMD ["npm", "start"]
