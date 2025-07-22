@@ -77,7 +77,6 @@ app.post('/scrape', async (req, res) => {
 
         browser = await browserLauncher.launch({
             headless: true,
-            executablePath: '/home/pptruser/.cache/puppeteer/chrome/linux-127.0.6533.88/chrome-linux64/chrome',
             args: browserArgs
         });
         const page = await browser.newPage();
@@ -325,7 +324,6 @@ app.post('/screenshot', async (req, res) => {
 
         browser = await browserLauncher.launch({
             headless: true,
-            executablePath: '/home/pptruser/.cache/puppeteer/chrome/linux-127.0.6533.88/chrome-linux64/chrome',
             args: browserArgs
         });
         const page = await browser.newPage();
@@ -444,7 +442,6 @@ app.post('/content', async (req, res) => {
 
         browser = await browserLauncher.launch({
             headless: true,
-            executablePath: '/home/pptruser/.cache/puppeteer/chrome/linux-127.0.6533.88/chrome-linux64/chrome',
             args: browserArgs
         });
         const page = await browser.newPage();
