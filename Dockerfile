@@ -15,6 +15,7 @@ RUN npm install
 # --- ADD THIS LINE ---
 # Explicitly install the browser that Puppeteer expects
 # This uses the version defined in your package.json dependencies
+ENV PUPPETEER_CACHE_DIR=/opt/render/.cache/puppeteer
 RUN npx puppeteer browsers install chrome
 
 # 複製應用程序代碼
