@@ -77,6 +77,7 @@ app.post('/scrape', async (req, res) => {
 
         browser = await browserLauncher.launch({
             headless: true,
+            executablePath: '/usr/bin/google-chrome', // <--- Try this!
             args: browserArgs
         });
         const page = await browser.newPage();
