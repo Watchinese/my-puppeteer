@@ -1,6 +1,7 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 const chromePath = puppeteer.executablePath();
+console.log('Detected chromePath:', chromePath);
 // puppeteer-extra and StealthPlugin will be conditionally loaded inside the route
 
 const app = express();
