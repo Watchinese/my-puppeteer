@@ -6,7 +6,7 @@ WORKDIR /app
 
 # 複製 package.json 和 package-lock.json (如果存在)
 COPY package*.json ./
-RUN npm ci
+# RUN npm ci
 
 # 安裝 Node.js 依賴
 RUN npm install
