@@ -7,6 +7,8 @@ WORKDIR /app
 # 複製 package.json 和 package-lock.json (如果存在)
 COPY package*.json ./
 RUN npm ci
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 # IMPORTANT: Tell Puppeteer to skip browser download
 ENV PUPPETEER_SKIP_DOWNLOAD=true
 
