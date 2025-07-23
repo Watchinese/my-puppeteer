@@ -1,6 +1,5 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
-const chromePath = puppeteer.executablePath();
 // console.log('Detected chromePath:', chromePath);
 // puppeteer-extra and StealthPlugin will be conditionally loaded inside the route
 
@@ -80,7 +79,6 @@ app.post('/scrape', async (req, res) => {
         browser = await browserLauncher.launch({
             headless: true,
             // executablePath: '/usr/bin/chromium-browser', // Point to the system-installed browser
-            executablePath: puppeteer.executablePath(),
             args: browserArgs
         });
         const page = await browser.newPage();
