@@ -79,7 +79,7 @@ app.post('/scrape', async (req, res) => {
         browser = await browserLauncher.launch({
             headless: true,
             // executablePath: '/usr/bin/chromium-browser', // Point to the system-installed browser
-            executablePath: chromePath,
+            executablePath: '/opt/render/.cache/puppeteer/chrome/linux-127.0.6533.88/chrome-linux64/chrome',
             args: browserArgs
         });
         const page = await browser.newPage();
