@@ -14,7 +14,7 @@ RUN npm install
 # 複製應用程序代碼
 COPY . .
 
-//RUN npx puppeteer browsers install chrome
+# RUN npx puppeteer browsers install chrome
 ENV PORT=10000
 # 暴露應用程序端口 (Hugging Face Spaces 主要看 README.md 的 app_port)
 EXPOSE 10000
